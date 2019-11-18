@@ -28,6 +28,7 @@ class Person:
         self.stock_market = self.post_tax_income * self.savings_ratio * self.stock_market_ratio
         self.net_worth = self.stock_market + self.high_intrest_savings_account + self.my_401k
         
+        self.prev_net_worth = 0
         
 
     def calc_tax(self, pre_tax_income): 
@@ -42,6 +43,7 @@ class Person:
 
     def update(self): 
         self.age += 1
+        self.prev_net_worth = self.net_worth
         
         self.pre_tax_income *= self.promotion
         self.pre_tax_income_after_401k = self.pre_tax_income - self.pre_tax_income * 0.06
@@ -53,10 +55,10 @@ class Person:
         self.net_worth = self.my_401k + self.high_intrest_savings_account + self.stock_market
     
     def print_this_year(self):
-        print(standardize_length(self.age, self.column_width), standardize_length(self.pre_tax_income, self.column_width), standardize_length(self.pre_tax_income_after_401k, self.column_width), standardize_length(self.post_tax_income, self.column_width), standardize_length(self.stock_market, self.column_width), standardize_length(self.high_intrest_savings_account, self.column_width), standardize_length(self.my_401k, self.column_width), standardize_length(self.net_worth, self.column_width))
+        print(standardize_length(self.age, self.column_width), standardize_length(self.pre_tax_income, self.column_width), standardize_length(self.pre_tax_income_after_401k, self.column_width), standardize_length(self.post_tax_income, self.column_width), standardize_length(self.stock_market, self.column_width), standardize_length(self.high_intrest_savings_account, self.column_width), standardize_length(self.my_401k, self.column_width), standardize_length(self.net_worth, self.column_width), standardize_length(self.net_worth - self.prev_net_worth, self.column_width))
 
     def predict_and_print(self, years):
-        print(standardize_length("age", self.column_width), standardize_length("income", self.column_width), standardize_length("income after 401k", self.column_width), standardize_length("income after tax", self.column_width), standardize_length("stocks", self.column_width), standardize_length("savings account", self.column_width), standardize_length("401k", self.column_width), standardize_length("net worth", self.column_width))
+        print(standardize_length("age", self.column_width), standardize_length("income", self.column_width), standardize_length("income after 401k", self.column_width), standardize_length("income after tax", self.column_width), standardize_length("stocks", self.column_width), standardize_length("savings account", self.column_width), standardize_length("401k", self.column_width), standardize_length("net worth", self.column_width), standardize_length("change", self.column_width))
         for _ in range(self.age, self.age + years + 1): 
             self.print_this_year()
             self.update()
