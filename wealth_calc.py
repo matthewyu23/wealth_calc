@@ -11,7 +11,7 @@ def standardize_length(s, l):
     return s
 
 class Person: 
-    def __init__(self, age = 22, income = 100000, promotion = 1.08, savings_ratio = 0.2, high_intrest_savings_account_ratio = 0.5, stock_market_ratio = 0.5): 
+    def __init__(self, age = 22, income = 100000, promotion = 1.03, savings_ratio = 0.2, high_intrest_savings_account_ratio = 0.5, stock_market_ratio = 0.5): 
         self.age = age
         self.stock_market_ratio = stock_market_ratio
         self.savings_ratio = savings_ratio
